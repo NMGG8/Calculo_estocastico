@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\begin{document}
+\title{Proyecto 5 — Opción Americana · Árbol Binomial}
+\maketitle
+
+Proyecto 5 — Opción Americana · Árbol Binomial
+Finanzas Cuantitativas · Proyecto 5
+Opción Americana
+mediante Árbol Binomial CRR
+¿Cómo cambia la valuación cuando el ejercicio puede ocurrir
+antes
+del vencimiento? Comparativa PUT Europea vs. Americana
+Marco Teórico
+Modelo CRR — Cox, Ross & Rubinstein (1979)
+El modelo binomial divide el tiempo al vencimiento
+T
+en
+N
+pasos iguales de longitud
+Δt = T/N
+. En cada paso el activo puede subir un factor
+u
+o bajar un factor
+d
+.
+La clave está en la
+inducción hacia atrás (backward induction)
+: se calculan los payoffs en el vencimiento y se descuenta hacia el presente, pero en cada nodo intermedio se verifica si conviene ejercer anticipadamente (sólo para opciones americanas).
+Parámetros del árbol
+\[
+          u = e^{\sigma\sqrt{\Delta t}}, \quad d = e^{-\sigma\sqrt{\Delta t}} = \frac{1}{u}
+        \]
+\[
+          p = \frac{e^{r\Delta t} - d}{u - d}
+        \]
+donde
+p
+es la
+probabilidad neutral al riesgo
+de movimiento alcista.
+Backward Induction
+\[
+          \text{Payoff: } \max(K - S, 0)
+        \]
+\[
+          V_{i,j} = e^{-r\Delta t}\bigl[p\,V_{i+1,j+1} + (1-p)\,V_{i+1,j}\bigr]
+        \]
+Para la
+opción americana
+se agrega:
+\[
+          V_{i,j}^{\text{Am}} = \max\!\Bigl(K - S_{i,j},\; V_{i,j}^{\text{cont}}\Bigr)
+        \]
+Diferencia fundamental: PUT Europea vs. Americana
+La
+PUT Europea
+sólo puede ejercerse al vencimiento. La
+PUT Americana
+puede ejercerse en cualquier momento, lo que añade valor cuando el activo cae profundamente por debajo del strike, ya que el inversor prefiere recibir el beneficio
+hoy
+en lugar de esperar.
+Por ello:
+\(P_{\text{Am}} \geq P_{\text{Eu}}\)
+siempre. La diferencia se llama
+Prima por Ejercicio Temprano (PET)
+.
+Parámetros del Modelo
+⬧ Modifica los parámetros y presiona Recalcular
+S₀ — Precio inicial
+K — Strike
+r — Tasa libre de riesgo
+σ — Volatilidad
+T — Tiempo (años)
+N — Pasos del árbol
+Recalcular
+Resultados
+Put Europea
+—
+Valor sólo al vencimiento
+Put Americana
+—
+Ejercicio anticipado incluido
+Prima por Ej. Temprano
+—
+Americana − Europea
+Nodos con ej. anticipado
+—
+Nodos en rojo en el árbol
+Factor u (alza)
+—
+Factor d (baja)
+—
+Prob. neutral p
+—
+Δt (años/paso)
+—
+Árbol Binomial — Precios del Activo
+Precio del activo S
+i,j
+Nodo intermedio
+Nodo terminal (vencimiento)
+Árbol Binomial — Valor de la Opción
+▸ PUT EUROPEA
+▸ PUT AMERICANA
+Ejercicio anticipado óptimo
+Continuar (no ejercer)
+Terminal
+Comparativa por Precios del Activo
+La brecha entre ambas curvas es la
+Prima por Ejercicio Temprano
+Cálculos Paso a Paso
+Presiona
+Recalcular
+para ver el proceso detallado…
+Tabla Comparativa
+Característica
+Put Europea
+Put Americana
+Ejercicio
+Sólo al vencimiento
+En cualquier momento
+Valuación (árbol)
+—
+—
+Curva del árbol
+Backward induction puro
+Backward + max(payoff, cont.)
+Intrinsic value posible
+Sólo en \(t=T\)
+En cualquier nodo
+Precio siempre ≥
+—
+Sí, ≥ Europea
+Prima por ej. temprano
+0.0000
+—
+Nodos de ej. temprano
+N/A
+—
+Cuándo se prefiere ejercer
+Nunca antes
+Cuando \(K - S > V_{\text{cont}}\)
+Conclusiones
+01
+¿Por qué la opción americana vale más?
+La opción americana otorga al tenedor
+todos los derechos
+de la europea más la flexibilidad de ejercer anticipadamente. Este derecho adicional tiene valor positivo: el inversor puede capturar ganancias inmediatas cuando el activo cae profundamente y recibir el beneficio
+hoy
+en lugar de esperar, aprovechando el valor del dinero en el tiempo.
+02
+¿Cuándo conviene ejercer temprano?
+Conviene ejercer anticipadamente cuando el
+valor intrínseco
+\((K - S)\) supera el
+valor de continuación
+. Esto ocurre cuando el activo cae muy por debajo del strike, la tasa de interés es alta (el valor presente del strike es mayor hoy) y el tiempo restante no compensa la espera.
+03
+La Prima por Ejercicio Temprano (PET)
+La PET = \(P_{\text{Am}} - P_{\text{Eu}} \geq 0\) representa el valor monetario de la flexibilidad. Crece con la volatilidad (más nodos donde puede ser óptimo ejercer), con la tasa libre de riesgo y cuando el activo está profundamente
+in-the-money
+. Es el precio que el mercado asigna a la opción adicional de ejercicio anticipado.
+04
+Implicaciones para la cobertura (hedging)
+Un vendedor de una put americana debe considerar la PET al cotizar el precio, pues asume el riesgo de asignación prematura. El tenedor debería ejercer cuando el nodo aparece en rojo en el árbol, señal de que continuar la opción destruye valor. El árbol binomial es la herramienta estándar en la industria para valorar derivados con esta característica.
+Resumen del modelo con los parámetros actuales
+Ejecuta el modelo para ver el resumen personalizado…
+Proyecto 5 · Finanzas Cuantitativas · Modelo CRR (Cox–Ross–Rubinstein, 1979) · HTML puro + Chart.js + MathJax
+
+\end{document}
