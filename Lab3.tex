@@ -1,0 +1,12 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\title{Laboratorio 3: Valuación Monte Carlo de una Opción Europea}
+\maketitle
+\section{Modelo}
+\[ dS_t=rS_tdt+\sigma S_t dB_t^Q \]
+\[ S_T=S_0 e^{(r-\frac12\sigma^2)T+\sigma\sqrt{T}Z} \]
+\section{Precio}
+\[ Precio_{MC}=e^{-rT}E^Q[\max(S_T-K,0)] \]
+\end{document}

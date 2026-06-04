@@ -1,0 +1,15 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\title{Laboratorio 1: Estimación de un Movimiento Browniano Geométrico}
+\maketitle
+\section{Objetivo}
+Estimar los parámetros de deriva ($\mu$) y volatilidad ($\sigma$) de un GBM utilizando datos históricos de AAPL.
+\section{Modelo}
+\[ dS_t=\mu S_t dt+\sigma S_t dB_t \]
+\[ d\log(S_t)=(\mu-\tfrac12\sigma^2)dt+\sigma dB_t \]
+\section{Resultados}
+Deriva anual estimada: $\hat{\mu}=0.1776$.\\
+Volatilidad anual estimada: $\hat{\sigma}=0.2777$.
+\end{document}

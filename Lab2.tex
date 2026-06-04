@@ -1,0 +1,14 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\title{Laboratorio 2: Volatilidad Realizada y Ventanas Móviles}
+\maketitle
+\section{Objetivo}
+Estimar volatilidad realizada mediante ventanas móviles de 21, 63 y 126 días.
+\section{Metodología}
+\[ r_t=\log(S_t/S_{t-1}) \]
+\[ \sigma_t=\mathrm{std}(r_{t-n+1},...,r_t)\sqrt{252} \]
+\section{Conclusión}
+Se observa clustering de volatilidad y diferencias entre ventanas cortas y largas.
+\end{document}
